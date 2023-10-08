@@ -30,4 +30,4 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet }}
       - name: Execute dotnet
-        run: dotnet build log4net
+        run: dotnet build
