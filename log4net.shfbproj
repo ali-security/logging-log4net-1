@@ -88,5 +88,7 @@ limitations under the License.
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win32' ">
   </PropertyGroup>
   <!-- Import the SHFB build targets -->
+<!--
   <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
+-->
 </Project>
