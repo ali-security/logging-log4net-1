@@ -31,3 +31,4 @@ jobs:
           dotnet-version: ${{ matrix.dotnet }}
       - name: Execute dotnet
         run: dotnet build
+        working-directory: src
