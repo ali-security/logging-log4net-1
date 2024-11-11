@@ -4,7 +4,7 @@ image: 'Visual Studio 2015'
 
 # Define environment variables if needed
 environment:
-  NANT_HOME: C:\NAnt
+  NANT_HOME: 'C:\Program Files\NAnt'
   NANT_VERSION: '0.85'
 
 # Install NAnt
