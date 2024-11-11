@@ -6,8 +6,6 @@ image: '.NET Framework 2.0, 3.0, 3.5, 4.0, 4.5.1, 4.5.2'
 environment:
   NANT_HOME: C:\NAnt
   NANT_VERSION: '0.85'
-  PATH:
-    - '%NANT_HOME%'
 
 # Install NAnt
 before_build:
