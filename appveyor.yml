@@ -11,7 +11,20 @@ environment:
 before_build:
   - ps: |
       Write-Output "Installing NAnt..."
-      Invoke-WebRequest -UserAgent "Wget" -Uri "http://downloads.sourceforge.net/project/nant/nant/$env:NANT_VERSION/nant-$env:NANT_VERSION-bin.zip" -OutFile "nant.zip"
+      $maxRetries = 5
+      $attempt = 0
+      $outputPath = "nant.zip"
+      
+      while ($attempt -lt $maxRetries -and !(Test-Path -Path $outputPath)) {
+          try {
+              Write-Output "Attempting download ($($attempt + 1)/$maxRetries)..."
+              Invoke-WebRequest -UserAgent "Wget" -Uri "http://downloads.sourceforge.net/project/nant/nant/$env:NANT_VERSION/nant-$env:NANT_VERSION-bin.zip" -OutFile $outputPath
+          } catch {
+              Write-Output "Download failed. Retrying in 5 seconds..."
+              Start-Sleep -Seconds 5
+          }
+          $attempt++
+      }
       Expand-Archive -Path "nant.zip" -DestinationPath $env:NANT_HOME
       Remove-Item "nant.zip"
 
