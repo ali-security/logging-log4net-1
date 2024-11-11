@@ -1,0 +1,32 @@
+# appveyor.yml
+version: '2.0.0-sp1'
+image: '.NET Framework 2.0, 3.0, 3.5, 4.0, 4.5.1, 4.5.2'
+
+# Define environment variables if needed
+environment:
+  NANT_HOME: C:\NAnt
+  NANT_VERSION: '0.85'
+  PATH:
+    - %NANT_HOME%
+
+# Install NAnt
+before_build:
+  - ps: |
+      # Check if NAnt is already installed
+      if (!(Test-Path -Path $env:NANT_HOME)) {
+          Write-Output "Installing NAnt..."
+          Invoke-WebRequest -Uri "https://github.com/nant/nant/releases/download/0.85/NAnt-0.85-bin.zip" -OutFile "nant.zip"
+          Expand-Archive -Path "nant.zip" -DestinationPath "C:\NAnt"
+          Remove-Item "nant.zip"
+      } else {
+          Write-Output "NAnt is already installed."
+      }
+
+# Build using NAnt
+build_script:
+  - cmd: .\build.cmd package %APPVEYOR_BUILD_VERSION%
+
+# Artifacts to store after build (e.g., binaries, logs)
+artifacts:
+  - path: /path/to/output_directory/*
+    name: Build_Artifacts
