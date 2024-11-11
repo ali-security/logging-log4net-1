@@ -1,6 +1,6 @@
 # appveyor.yml
 version: '{build}'
-image: 'Visual Studio 2015'
+image: 'Visual Studio 2017'
 
 # Define environment variables if needed
 environment:
@@ -11,8 +11,8 @@ environment:
 before_build:
   - ps: |
       Write-Output "Installing NAnt..."
-      curl.exe -L -o nant.zip -A Wget "http://downloads.sourceforge.net/project/nant/nant/%NANT_VERSION%/nant-%NANT_VERSION%-bin.zip"
-      7z.exe x "nant.zip" -o %NANT_HOME%
+      Invoke-WebRequest -UserAgent "Wget" -Uri "http://downloads.sourceforge.net/project/nant/nant/%NANT_VERSION%/nant-%NANT_VERSION%-bin.zip" -OutFile "nant.zip"
+      Expand-Archive -Path "nant.zip" -DestinationPath %NANT_HOME%
       Remove-Item "nant.zip"
 
 # Build using NAnt
