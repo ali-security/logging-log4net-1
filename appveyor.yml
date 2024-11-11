@@ -1,6 +1,6 @@
 # appveyor.yml
 version: '2.0.0-sp1'
-image: '.NET Framework 2.0, 3.0, 3.5, 4.0, 4.5.1, 4.5.2'
+image: 'Visual Studio 2015'
 
 # Define environment variables if needed
 environment:
