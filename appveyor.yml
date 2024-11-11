@@ -11,8 +11,8 @@ environment:
 before_build:
   - ps: |
       Write-Output "Installing NAnt..."
-      Write-Output "Pulling from http://downloads.sourceforge.net/project/nant/nant/$env:NANT_VERSION%/nant-$env:NANT_VERSION%/-bin.zip"
-      Invoke-WebRequest -UserAgent "Wget" -Uri "http://downloads.sourceforge.net/project/nant/nant/$env:NANT_VERSION%/nant-$env:NANT_VERSION%/-bin.zip" -OutFile "nant.zip"
+      Write-Output "Pulling from http://downloads.sourceforge.net/project/nant/nant/$env:NANT_VERSION/nant-$env:NANT_VERSION-bin.zip"
+      Invoke-WebRequest -UserAgent "Wget" -Uri "http://downloads.sourceforge.net/project/nant/nant/$env:NANT_VERSION/nant-$env:NANT_VERSION-bin.zip" -OutFile "nant.zip"
       Write-Output "Installing to $env:NANT_HOME"
       Expand-Archive -Path "nant.zip" -DestinationPath $env:NANT_HOME
       Remove-Item "nant.zip"
