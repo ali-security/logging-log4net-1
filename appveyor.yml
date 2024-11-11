@@ -4,25 +4,22 @@ image: 'Visual Studio 2015'
 
 # Define environment variables if needed
 environment:
-  NANT_HOME: 'C:\Program Files\NAnt'
+  NANT_HOME: 'C:\NAnt'
   NANT_VERSION: '0.85'
 
 # Install NAnt
 before_build:
   - ps: |
-      # Check if NAnt is already installed
-      if (!(Test-Path -Path $env:NANT_HOME)) {
-          Write-Output "Installing NAnt..."
-          Invoke-WebRequest -UserAgent "Wget" -Uri "http://downloads.sourceforge.net/project/nant/nant/0.85/nant-0.85-bin.zip" -OutFile "nant.zip"
-          Expand-Archive -Path "nant.zip" -DestinationPath %NANT_HOME%
-          Remove-Item "nant.zip"
-      } else {
-          Write-Output "NAnt is already installed."
-      }
+      Write-Output "Installing NAnt..."
+      Invoke-WebRequest -UserAgent "Wget" -Uri "http://downloads.sourceforge.net/project/nant/nant/0.85/nant-0.85-bin.zip" -OutFile "nant.zip"
+      Expand-Archive -Path "nant.zip" -DestinationPath %NANT_HOME%
+      Remove-Item "nant.zip"
 
 # Build using NAnt
 build_script:
-  - cmd: .\build.cmd package 2.0.0-sp1
+  - ps: |
+      set PATH=%PATH%:%NANT_HOME%\nant-%NANT_VERSION%\bin
+      .\build.cmd package 2.0.0-sp1
 
 # Artifacts to store after build (e.g., binaries, logs)
 artifacts:
