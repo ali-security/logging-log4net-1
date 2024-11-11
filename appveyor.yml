@@ -5,7 +5,7 @@ image: 'Visual Studio 2013'
 # Define environment variables if needed
 environment:
   NANT_HOME: 'C:\NAnt'
-  NANT_VERSION: '0.85'
+  NANT_VERSION: '0.92'
 
 # Install NAnt
 before_build:
