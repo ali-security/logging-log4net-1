@@ -13,7 +13,7 @@ before_build:
       # Check if NAnt is already installed
       if (!(Test-Path -Path $env:NANT_HOME)) {
           Write-Output "Installing NAnt..."
-          Invoke-WebRequest -Uri "https://github.com/nant/nant/releases/download/0.85/NAnt-0.85-bin.zip" -OutFile "nant.zip"
+          Invoke-WebRequest -UserAgent "Wget" -Uri "http://downloads.sourceforge.net/project/nant/nant/0.85/nant-0.85-bin.zip" -OutFile "nant.zip"
           Expand-Archive -Path "nant.zip" -DestinationPath "C:\NAnt"
           Remove-Item "nant.zip"
       } else {
