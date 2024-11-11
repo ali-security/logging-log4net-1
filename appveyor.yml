@@ -31,7 +31,7 @@ before_build:
 # Build using NAnt
 build_script:
   - ps: |
-      $env:Path += ';$env:NANT_HOME\nant-$env:NANT_VERSION\bin'
+      $env:Path += ;$env:NANT_HOME\nant-$env:NANT_VERSION\bin
       Write-Output $env:Path
       dir $env:NANT_HOME\nant-$env:NANT_VERSION\bin
       .\build.cmd package 2.0.0-sp1
