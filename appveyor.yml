@@ -1,5 +1,5 @@
 # appveyor.yml
-version: '2.0.0-sp1'
+version: '{build}'
 image: 'Visual Studio 2015'
 
 # Define environment variables if needed
@@ -22,7 +22,7 @@ before_build:
 
 # Build using NAnt
 build_script:
-  - cmd: .\build.cmd package %APPVEYOR_BUILD_VERSION%
+  - cmd: .\build.cmd package 2.0.0-sp1
 
 # Artifacts to store after build (e.g., binaries, logs)
 artifacts:
